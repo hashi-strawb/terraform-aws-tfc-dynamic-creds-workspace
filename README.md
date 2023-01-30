@@ -1,5 +1,7 @@
 # AWS Dynamic Creds for TFC Workspaces
 
+Based on the examples from https://github.com/hashicorp/terraform-dynamic-credentials-setup-examples/tree/main/aws
+
 Set up IAM roles in your AWS account for TFC Dynamic Creds.
 
 Note: This is currently limited to 1 IAM role, used for both Plan and Apply, and this is hard-coded to full admin permissions on the account.
