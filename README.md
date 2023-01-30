@@ -21,7 +21,7 @@ This requires an OIDC provider for the TFC org to be pre-created in AWS.
 As you can only have one of these per AWS account per URL (e.g. app.terraform.io), then
 this module does not create it.
 
-Use https://github.com/hashi-strawb/terraform-aws-tfc-dynamic-creds-provider/ to create the
+Use https://registry.terraform.io/modules/hashi-strawb/tfc-dynamic-creds-provider/aws/latest to create the
 OIDC provider in AWS first, and pass in the ARN
 
 ## Providers
