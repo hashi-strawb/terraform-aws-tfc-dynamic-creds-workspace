@@ -1,5 +1,11 @@
 # AWS Dynamic Creds for TFC Workspaces
 
+Set up IAM roles in your AWS account for TFC Dynamic Creds.
+
+Note: This is currently limited to 1 IAM role, used for both Plan and Apply, and this is hard-coded to full admin permissions on the account.
+
+I'll probably fix that later...
+
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
