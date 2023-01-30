@@ -47,14 +47,8 @@ EOF
 # Set required Vars in TFC
 #
 
-# Get the ID for the workspace
-data "tfe_workspace" "workspace" {
-  name         = var.tfc_workspace_name
-  organization = var.tfc_organization_name
-}
-
 resource "tfe_variable" "workspace_enable_aws_provider_auth" {
-  workspace_id = data.tfe_workspace.workspace.id
+  workspace_id = var.tfc_workspace_id
 
   key      = "TFC_AWS_PROVIDER_AUTH"
   value    = "true"
@@ -64,7 +58,7 @@ resource "tfe_variable" "workspace_enable_aws_provider_auth" {
 }
 
 resource "tfe_variable" "workspace_tfc_aws_role_arn" {
-  workspace_id = data.tfe_workspace.workspace.id
+  workspace_id = var.tfc_workspace_id
 
   key      = "TFC_AWS_RUN_ROLE_ARN"
   value    = aws_iam_role.workspace_role.arn

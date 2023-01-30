@@ -11,19 +11,21 @@ variable "oidc_provider_client_id_list" {
 
 variable "tfc_organization_name" {
   type        = string
-  default     = "fancycorp"
   description = "The name of your Terraform Cloud organization"
 }
 
 variable "tfc_workspace_name" {
   type        = string
-  default     = "bootstrap"
   description = "The name of the workspace"
+}
+
+variable "tfc_workspace_id" {
+  type        = string
+  description = "The ID of the workspace"
 }
 
 variable "tfc_workspace_project" {
   type        = string
-  default     = "Default Project"
   description = "The name of the project the workspace lives in"
 }
 locals {
