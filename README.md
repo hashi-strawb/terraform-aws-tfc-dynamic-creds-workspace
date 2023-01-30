@@ -9,6 +9,10 @@ Note: This is currently limited to 1 IAM role, used for both Plan and Apply, and
 I'll probably fix that later...
 
 
+
+![IAM Users for TFC Workspaces](docs/tfc-iam-roles.png)
+
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
