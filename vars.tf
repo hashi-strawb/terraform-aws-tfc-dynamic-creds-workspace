@@ -16,13 +16,20 @@ variable "tfc_organization_name" {
 
 variable "tfc_workspace_name" {
   type        = string
-  description = "The name of the workspace"
+  description = "The name of the workspace. If not specified, module will create Project-scoped creds"
+  default     = ""
 }
 
 variable "tfc_workspace_id" {
   type        = string
-  description = "The ID of the workspace"
+  description = "The ID of the workspace. If not specified, module will create Project-scoped creds"
+  default     = ""
 }
+
+locals {
+  is_project = (var.tfc_workspace_name == "" && var.tfc_workspace_id == "")
+}
+
 
 variable "tfc_workspace_project" {
   type        = string

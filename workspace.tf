@@ -1,9 +1,15 @@
+#
+# For credentials scoped to a Workspace...
+#
+
+
 
 #
 # Create AWS role for the workspace to Assume
 #
 
 resource "aws_iam_role" "workspace_role" {
+  count = local.is_project ? 0 : 1
 
   name = "tfc-${var.tfc_organization_name}-${local.tfc_workspace_project_nospaces}-${var.tfc_workspace_name}"
 
@@ -48,6 +54,8 @@ EOF
 #
 
 resource "tfe_variable" "workspace_enable_aws_provider_auth" {
+  count = local.is_project ? 0 : 1
+
   workspace_id = var.tfc_workspace_id
 
   key      = "TFC_AWS_PROVIDER_AUTH"
@@ -58,10 +66,12 @@ resource "tfe_variable" "workspace_enable_aws_provider_auth" {
 }
 
 resource "tfe_variable" "workspace_tfc_aws_role_arn" {
+  count = local.is_project ? 0 : 1
+
   workspace_id = var.tfc_workspace_id
 
   key      = "TFC_AWS_RUN_ROLE_ARN"
-  value    = aws_iam_role.workspace_role.arn
+  value    = one(aws_iam_role.workspace_role).arn
   category = "env"
 
   description = "The AWS role arn runs will use to authenticate."
