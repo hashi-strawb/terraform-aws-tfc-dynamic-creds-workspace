@@ -34,7 +34,18 @@ locals {
 variable "tfc_workspace_project" {
   type        = string
   description = "The name of the project the workspace lives in"
+  default     = "*"
+
+  # TODO: Condition, if workspace name and id not set, then this must be something other than *
 }
+
+
 locals {
-  tfc_workspace_project_nospaces = replace(var.tfc_workspace_project, " ", "")
+  tfc_workspace_project_nospaces = replace(
+    replace(
+      var.tfc_workspace_project, " ", ""
+    ),
+    "*",
+    ""
+  )
 }

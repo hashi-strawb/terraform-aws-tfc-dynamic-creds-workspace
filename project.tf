@@ -79,11 +79,12 @@ resource "tfe_variable" "project_tfc_aws_role_arn" {
 }
 
 data "tfe_project" "project" {
-  name = var.tfc_workspace_project
+  count = local.is_project ? 1 : 0
+  name  = var.tfc_workspace_project
 }
 
 resource "tfe_project_variable_set" "creds_to_project" {
   count           = local.is_project ? 1 : 0
   variable_set_id = one(tfe_variable_set.creds).id
-  project_id      = data.tfe_project.project.id
+  project_id      = one(data.tfe_project.project).id
 }
