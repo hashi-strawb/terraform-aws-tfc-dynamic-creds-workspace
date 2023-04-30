@@ -26,8 +26,17 @@ variable "tfc_workspace_id" {
   default     = ""
 }
 
+variable "cred_type" {
+  type = string
+
+  validation {
+    condition     = contains(["workspace", "project"], var.cred_type)
+    error_message = "Must specify credential type, one of: workspace, project"
+  }
+}
+
 locals {
-  is_project = (var.tfc_workspace_name == "" && var.tfc_workspace_id == "")
+  is_project = var.cred_type == "project"
 }
 
 

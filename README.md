@@ -50,12 +50,13 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_cred_type"></a> [cred\_type](#input\_cred\_type) | n/a | `string` | n/a | yes |
 | <a name="input_oidc_provider_arn"></a> [oidc\_provider\_arn](#input\_oidc\_provider\_arn) | The ARN for the app.terraform.io OIDC provider | `string` | n/a | yes |
 | <a name="input_oidc_provider_client_id_list"></a> [oidc\_provider\_client\_id\_list](#input\_oidc\_provider\_client\_id\_list) | The audience value(s) to use in run identity tokens. Defaults to aws.workload.identity, but if your OIDC provider uses something different, set it here | `list(string)` | <pre>[<br>  "aws.workload.identity"<br>]</pre> | no |
 | <a name="input_tfc_organization_name"></a> [tfc\_organization\_name](#input\_tfc\_organization\_name) | The name of your Terraform Cloud organization | `string` | n/a | yes |
 | <a name="input_tfc_workspace_id"></a> [tfc\_workspace\_id](#input\_tfc\_workspace\_id) | The ID of the workspace. If not specified, module will create Project-scoped creds | `string` | `""` | no |
 | <a name="input_tfc_workspace_name"></a> [tfc\_workspace\_name](#input\_tfc\_workspace\_name) | The name of the workspace. If not specified, module will create Project-scoped creds | `string` | `""` | no |
-| <a name="input_tfc_workspace_project"></a> [tfc\_workspace\_project](#input\_tfc\_workspace\_project) | The name of the project the workspace lives in | `string` | n/a | yes |
+| <a name="input_tfc_workspace_project"></a> [tfc\_workspace\_project](#input\_tfc\_workspace\_project) | The name of the project the workspace lives in | `string` | `"*"` | no |
 
 ## Outputs
 
