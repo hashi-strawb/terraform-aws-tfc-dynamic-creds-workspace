@@ -29,7 +29,7 @@ resource "aws_iam_role" "project_role" {
          "app.terraform.io:aud": "${one(var.oidc_provider_client_id_list)}"
        },
        "StringLike": {
-         "app.terraform.io:sub": "organization:${var.tfc_organization_name}:project:${var.tfc_workspace_project}:workspace:*:run_phase:*"
+         "app.terraform.io:sub": "organization:${var.tfc_organization_name}:project:${var.tfc_workspace_project_name}:workspace:*:run_phase:*"
        }
      }
    }
@@ -50,7 +50,7 @@ EOF
 
 resource "tfe_variable_set" "creds" {
   count        = local.is_project ? 1 : 0
-  name         = "AWS Dynamic Creds: ${var.tfc_workspace_project} Project"
+  name         = "AWS Dynamic Creds: ${var.tfc_workspace_project_name} Project"
   description  = "AWS Auth & Role details for Dynamic AWS Creds"
   organization = var.tfc_organization_name
 }
@@ -78,13 +78,8 @@ resource "tfe_variable" "project_tfc_aws_role_arn" {
   variable_set_id = one(tfe_variable_set.creds).id
 }
 
-data "tfe_project" "project" {
-  count = local.is_project ? 1 : 0
-  name  = var.tfc_workspace_project
-}
-
 resource "tfe_project_variable_set" "creds_to_project" {
   count           = local.is_project ? 1 : 0
   variable_set_id = one(tfe_variable_set.creds).id
-  project_id      = one(data.tfe_project.project).id
+  project_id      = var.tfc_workspace_project_id
 }
